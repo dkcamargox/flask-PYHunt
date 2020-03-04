@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <ul>
+      <div class="product-list">
+        {% for product in data %}
+            <article class={{product._id}}>
+                <strong>{{product.title}}</strong>
+                <p>{{product.description}}</p>
+                <a> Acessar</a>
+            </article> 
+        {% endfor %}
+        <div class="actions">
+            <button >Anterior</button>
+            <button >Próxima</button>
+        </div>
+    </div>
+  </ul>
+{% endblock %}

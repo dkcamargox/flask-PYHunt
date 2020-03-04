@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <link href="{{ url_for('static', filename='styles/main.css') }}" rel="stylesheet" type="text/css" >
+   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Flask App</title>
+  </head>
+  <body>
+    <header id="main-header">PYHunt</header>
+      {% block content %}
+      {% endblock %}
+  </body>
+</html>
