@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <!-- link to the css file -->
-   <link href="{{ url_for('static', filename='styles/main.css') }}" rel="stylesheet" type="text/css" >
-   <!-- link to the icon -->
+    {% block css %} {% endblock css%}
+    <!-- link to the icon -->
    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <title>Flask App</title>
   </head>

@@ -8,7 +8,7 @@ STATIC_DIR='./static'
 app = Flask(__name__,template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
 
 
-def requisistar( page ):
+def requisitar( page ):
     # this make the requisition from the backend 
     response = []
     __URL = 'http://localhost:3001/api/products?page='+ str(page)
@@ -27,6 +27,11 @@ def enabled_disabled(truFals):
     else:
         return("enabled")
 
+def requisitar_1produto(_id):
+    __URL = 'http://localhost:3001/api/products/' + str(_id)
+    # print(__URL)
+    request = requests.get(url=__URL)
+    return request.json()
 
 # obj with the name of the functions I want use in the template
 funcs = {
@@ -39,17 +44,20 @@ def home_page():
     # this take the var from the query with indicate what page is needed from the
     # requisition
     page = int(request.args.get('page', '1'))
-    print(funcs['en_dis'])
+
     # go to the home template, passing the data, the actual page of the requisition
     # the max number of pages, and the obj with the functions.
-    return render_template('home.html', data=requisistar(page)[1], 
-    page=page, pages=requisistar(page)[0], functions=funcs)
+    return render_template('home.html', data=requisitar(page)[1], 
+    page=page, pages=requisitar(page)[0], functions=funcs)
 
 
-@app.route("/about")
-def about_page():
-    # not made yet
-    return render_template('about.html')
+@app.route("/products/<id>")
+def product_page(id):
+    # this make a requisition with the ID of the product, wicth return the response
+    # for only one of the products
+
+    res = requisitar_1produto(id)
+    return render_template('about.html', product = res )
 
 # run 
 if __name__ == '__main__':

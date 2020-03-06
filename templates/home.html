@@ -1,4 +1,7 @@
 {% extends 'layout.html' %}
+{% block css %}
+<link href="{{ url_for('static', filename='styles/home.css') }}" rel="stylesheet" type="text/css" >
+{% endblock css%}
 {% block content %}
   <div class="product-list">
     <!-- this run the list with the products and show them -->
@@ -7,20 +10,21 @@
         <strong>{{product.title}}</strong>
         <p>{{product.description}}</p>
         <!-- this a tag will be done -->
-        <a> Acessar </a> 
+        <a href="{{"/products/" + product._id}}"> Acessar </a> 
       </article> 
     {% endfor %}
     <div class="actions">
       <!-- the onClick will redirect for an href passing in the query a var with changes the page from the requisition -->
-      <!-- the 'en_dis' return enabled or disabled based in the respose of is it the first page or the last -->
+      <!-- the 'en_dis' return enabled or disabled based in the respose of is it the first page or the -->
       <button id="prev-btn" type="button"
-      onclick="window.location.href='{{ url_for( 'home_page') + "?page=%d"%(page-1) }}'"
+      onclick=window.location.href='{{ url_for( 'home_page') + "?page=%d"%(page-1) }}';
       {{functions['en_dis'](page==1)}} >
         Anterior
       </button>
       <button type="button" id="next-btn"
-      onclick="window.location.href='{{ url_for( 'home_page') + "?page=%d"%(page+1) }}'"
+      onclick="window.location.href='{{ url_for( 'home_page') + "?page=%d"%(page+1) }}';"
       {{functions['en_dis'](page==pages)}} >
+      
         Próxima
       </button>
     </div>

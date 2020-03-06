@@ -1,4 +1,14 @@
 {% extends 'layout.html' %}
+{% block css %}
+<link href="{{url_for('static', filename='styles/product.css') }}" rel="stylesheet" type="text/css" >
+{% endblock css%}
 {% block content %}
-  <h1>About page</h1>
+<div class="productInfo">
+  <article>
+  <h1>{{product.title}}</h1>
+  <p> {{product.description}}</p>
+  <p> URL: <a href={{product.url}} rel="noopener noreferrer" target="_blank"> {{product.url}} </a></p>
+  </article>
+  <a href="/" class="voltar">Voltar</a>
+</div>
 {% endblock content %}
