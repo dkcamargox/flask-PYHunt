@@ -1,14 +1,18 @@
 {% extends 'layout.html' %}
 {% block content %}
   <div class="product-list">
+    <!-- this run the list with the products and show them -->
     {% for product in data %}
       <article class={{product._id}}>
         <strong>{{product.title}}</strong>
         <p>{{product.description}}</p>
-        <a> Acessar</a>
+        <!-- this a tag will be done -->
+        <a> Acessar </a> 
       </article> 
     {% endfor %}
     <div class="actions">
+      <!-- the onClick will redirect for an href passing in the query a var with changes the page from the requisition -->
+      <!-- the 'en_dis' return enabled or disabled based in the respose of is it the first page or the last -->
       <button id="prev-btn" type="button"
       onclick="window.location.href='{{ url_for( 'home_page') + "?page=%d"%(page-1) }}'"
       {{functions['en_dis'](page==1)}} >
@@ -17,7 +21,6 @@
       <button type="button" id="next-btn"
       onclick="window.location.href='{{ url_for( 'home_page') + "?page=%d"%(page+1) }}'"
       {{functions['en_dis'](page==pages)}} >
-      
         Próxima
       </button>
     </div>
