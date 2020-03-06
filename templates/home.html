@@ -1,18 +1,25 @@
 {% extends 'layout.html' %}
 {% block content %}
-  <ul>
-      <div class="product-list">
-        {% for product in data %}
-            <article class={{product._id}}>
-                <strong>{{product.title}}</strong>
-                <p>{{product.description}}</p>
-                <a> Acessar</a>
-            </article> 
-        {% endfor %}
-        <div class="actions">
-            <button >Anterior</button>
-            <button >Próxima</button>
-        </div>
+  <div class="product-list">
+    {% for product in data %}
+      <article class={{product._id}}>
+        <strong>{{product.title}}</strong>
+        <p>{{product.description}}</p>
+        <a> Acessar</a>
+      </article> 
+    {% endfor %}
+    <div class="actions">
+      <button id="prev-btn" type="button"
+      onclick="window.location.href='{{ url_for( 'home_page') + "?page=%d"%(page-1) }}'"
+      {{functions['en_dis'](page==1)}} >
+        Anterior
+      </button>
+      <button type="button" id="next-btn"
+      onclick="window.location.href='{{ url_for( 'home_page') + "?page=%d"%(page+1) }}'"
+      {{functions['en_dis'](page==pages)}} >
+      
+        Próxima
+      </button>
     </div>
-  </ul>
+  </div>
 {% endblock %}
